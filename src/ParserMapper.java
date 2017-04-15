@@ -34,7 +34,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         }
     }
 
-    private void findPhoneNumber23(LongWritable key, Text value, Context context) throws IOException, InterruptedException{
+    private void findPhoneNumber(LongWritable key, Text value, Context context) throws IOException, InterruptedException{
 
     }
 
