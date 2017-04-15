@@ -12,4 +12,12 @@ public class Utility {
     public static String[] splitWithSpace(String inputString) {
         return inputString.toString().trim().split(" ");
     }
+
+    public static String[] splitWithSpacesAndTabs(String value) { return value.toString().trim().split("\\s+"); }
+
+    //
+    static String VALID_PHONENUMBER = "^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:\\(\\s*([2-9]1[02-9]" +
+            "|[2-9][02-8]1|[2-9][02-8][02-9])\\s*\\)|([2-9]1[02-9]|[2-9][02-8]1" +
+            "|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1" +
+            "|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$";
 }

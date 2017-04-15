@@ -14,6 +14,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         findEmailAndLinks(key, value, context);
+        findPhoneNumber(key, value, context);
     }
 
     private void findEmailAndLinks(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
@@ -32,6 +33,14 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     private void findPhoneNumber(LongWritable key, Text value, Context context) throws IOException, InterruptedException{
 
+        // split with spaces and tabs
+        String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
+        for(Object phoneNumberData : valueArray){
+            String phoneNumber = (String)phoneNumberData;
+            if (phoneNumber.matches(Utility.VALID_PHONENUMBER)){
+                context.write(new Text("test"), new Text("PhoneNumber :" + phoneNumber));
+            }
+        }
     }
 
 }
