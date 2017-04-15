@@ -70,7 +70,7 @@ public class ResumeAnalyzerJob {
     }
 
     public static void initJob(Job job) {
-        job.setInputFormatClass(org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat.class);
+        job.setInputFormatClass(org.apache.hadoop.mapreduce.lib.input.TextInputFormat.class);
         job.setMapperClass(ParserMapper.class);
         job.getConfiguration().set("mapred.mapper.new-api", "true");
         job.getConfiguration().set("mapred.map.tasks", "3");
