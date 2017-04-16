@@ -18,29 +18,37 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     }
 
     private void findEmailAndLinks(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String[] valueArray = Utility.splitWithSpace(value.toString());
+        String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
         for (String eachValue : valueArray) {
-            Matcher matcher = Utility.VALID_EMAIL_ADDRESS_REGEX.matcher(eachValue);
-            Matcher urlMatcher = Utility.VALID_URL.matcher(eachValue);
-            if (matcher.find()) {
-                context.write(new Text("test"), new Text("email:"+eachValue));
-            }
-            if(urlMatcher.find()){
-                context.write(new Text("test"), new Text("link:"+eachValue));
+            if (!eachValue.equals("")) {
+                Matcher emailMatcher = Utility.VALID_EMAIL_ADDRESS_REGEX.matcher(eachValue);
+                Matcher urlMatcher = Utility.VALID_URL.matcher(eachValue);
+                if (emailMatcher.find()) { //Check for email address regex pattern
+                    context.write(new Text(Utility.currentFile), new Text("email:" + eachValue));
+                }
+                if (urlMatcher.find()) { //Check for URL regex pattern
+                    context.write(new Text(Utility.currentFile), new Text("link:" + eachValue));
+                }
+                if (isMatchingSkill(eachValue)) { //Check if the word matches any of the required skill sets.
+                    context.write(new Text(Utility.currentFile), new Text("skill:" + eachValue));
+                }
             }
         }
     }
 
-    private void findPhoneNumber(LongWritable key, Text value, Context context) throws IOException, InterruptedException{
-
+    private void findPhoneNumber(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         // split with spaces and tabs
         String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
-        for(Object phoneNumberData : valueArray){
-            String phoneNumber = (String)phoneNumberData;
-            if (phoneNumber.matches(Utility.VALID_PHONENUMBER)){
-                context.write(new Text("test"), new Text("PhoneNumber :" + phoneNumber));
+        for (Object phoneNumberData : valueArray) {
+            String phoneNumber = (String) phoneNumberData;
+            if (phoneNumber.matches(Utility.VALID_PHONENUMBER)) {
+                context.write(new Text(Utility.currentFile), new Text("PhoneNumber :" + phoneNumber));
             }
         }
+    }
+
+    private boolean isMatchingSkill(String word) {
+        return Utility.requiredSkills.containsKey(word.toLowerCase());
     }
 
 }
