@@ -13,38 +13,42 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        findEmailAndLinks(key, value, context);
-        findPhoneNumber(key, value, context);
-        findGPA(key,value,context);
-    }
-
-    private void findEmailAndLinks(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
+
         for (String eachValue : valueArray) {
             if (!eachValue.equals("")) {
-                Matcher emailMatcher = Utility.VALID_EMAIL_ADDRESS_REGEX.matcher(eachValue);
-                Matcher urlMatcher = Utility.VALID_URL.matcher(eachValue);
-                if (emailMatcher.find()) { //Check for email address regex pattern
-                    context.write(new Text(Utility.currentFile), new Text("email:" + eachValue));
-                }
-                if (urlMatcher.find()) { //Check for URL regex pattern
-                    context.write(new Text(Utility.currentFile), new Text("link:" + eachValue));
-                }
-                if (isMatchingSkill(eachValue)) { //Check if the word matches any of the required skill sets.
-                    context.write(new Text(Utility.currentFile), new Text("skill:" + eachValue));
-                }
+                findEmail(key, value, context, eachValue);
+                findLinks(key, value, context, eachValue);
+                findMatchingSkills(key, value, context, eachValue);
+                findPhoneNumber(key, value, context, eachValue);
+                findGPA(key, value, context, eachValue);
             }
         }
     }
 
-    private void findPhoneNumber(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        // split with spaces and tabs
-        String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
-        for (Object phoneNumberData : valueArray) {
-            String phoneNumber = (String) phoneNumberData;
-            if (phoneNumber.matches(Utility.VALID_PHONENUMBER)) {
-                context.write(new Text(Utility.currentFile), new Text("PhoneNumber :" + phoneNumber));
-            }
+    private void findEmail(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+        Matcher emailMatcher = Utility.VALID_EMAIL_ADDRESS_REGEX.matcher(eachValue);
+        if (emailMatcher.find()) { //Check for email address regex pattern
+            context.write(new Text(Utility.currentFile), new Text("email:" + eachValue));
+        }
+    }
+
+    private void findLinks(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+        Matcher urlMatcher = Utility.VALID_URL.matcher(eachValue);
+        if (urlMatcher.find()) { //Check for URL regex pattern
+            context.write(new Text(Utility.currentFile), new Text("link:" + eachValue));
+        }
+    }
+
+    private void findMatchingSkills(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+        if (isMatchingSkill(eachValue)) { //Check if the word matches any of the required skill sets.
+            context.write(new Text(Utility.currentFile), new Text("skill:" + eachValue));
+        }
+    }
+
+    private void findPhoneNumber(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+        if (eachValue.matches(Utility.VALID_PHONENUMBER)) {
+            context.write(new Text(Utility.currentFile), new Text("PhoneNumber :" + eachValue));
         }
     }
 
@@ -52,15 +56,10 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         return Utility.requiredSkills.containsKey(word.toLowerCase());
     }
 
-    private void findGPA(LongWritable key,Text value,Context context)throws IOException, InterruptedException{
-        String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
-        for(String gpaData:valueArray){
-            Matcher gpaMatcher = Utility.VALID_GPA.matcher(gpaData);
-            if(gpaMatcher.find()){
-                context.write(new Text(Utility.currentFile), new Text("GPA: "+gpaMatcher.group(2)));
-            }
+    private void findGPA(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+        Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
+        if (gpaMatcher.find()) {
+            context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(2)));
         }
-
     }
-
 }
