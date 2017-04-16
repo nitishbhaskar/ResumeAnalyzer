@@ -29,7 +29,6 @@ public class ResumeAnalyzerJob {
 
 		/* This is an example of how to set input and output. */
         FileInputFormat.setInputPaths(job, args[0]);
-        Utility.currentFile = args[0];
         FileOutputFormat.setOutputPath(job, new Path(args[1] + "_intermediate"));
 
 		/* And finally, we submit the job. */

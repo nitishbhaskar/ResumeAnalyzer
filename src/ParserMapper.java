@@ -4,16 +4,17 @@
 
 import java.io.IOException;
 import java.util.regex.Matcher;
-
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
+        getCurrentFileName(context);
 
         for (String eachValue : valueArray) {
             if (!eachValue.equals("")) {
@@ -61,5 +62,11 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         if (gpaMatcher.find()) {
             context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(2)));
         }
+    }
+
+    private void getCurrentFileName(Context context){
+        FileSplit fileSplit = (FileSplit)context.getInputSplit();
+        String filename = fileSplit.getPath().getName();
+        Utility.currentFile = filename;
     }
 }

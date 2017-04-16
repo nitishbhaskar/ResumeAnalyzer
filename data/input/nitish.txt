@@ -1,0 +1,49 @@
+NITISH BHASKAR
+(315) 420 8933  318 Westcott St Apt. 2, Syracuse, NY 13210  nitishbhaskar90@gmail.com www.nitishbhaskar.com
+EDUCATION
+Master of Science in Computer Engineering								Aug 2015 – May 2017
+Syracuse University, Syracuse, New York									GPA: 3.86/4.0
+
+Bachelor of Engineering in Information Science and Engineering						Sep 2008 – Jun 2012
+JNN College of Engineering, Shimoga, India									GPA: 3.59/4.0
+PROFESSIONAL EXPERIENCE
+Syrasoft Self Storage Software, Baldwinsville, New York 							Jan 2017 - Present
+Android Developer Co-op
+•	Design and develop an android application for managing self-storage facility
+
+FedEx Services, Collierville, Tennessee									Jun 2016 – Aug 2016
+Information Technology Intern
+•	Designed and developed a responsive and device compatible enterprise-wide GIS web application to manage package drop-off and pick-up location of customers using geographic data.
+•	Used ESRI’s ArcGIS JavaScript API v4 to implement both 3D and 2D maps to make it more intuitive
+•	Implemented bulk upload feature to import GPS data collected from package scans during delivery
+Tata Consultancy Services, Bangalore, India								Nov 2012 – Jul 2015
+Systems Engineer
+•	Designed and developed an intricate end to end Claim Administration System using Angular JS and ASP .NET MVC4 for Vitality Health – a UK based health insurance company
+•	Developed a system for one-click deployment of code to different regions of servers which eliminated its manual deployment
+•	Used agile methodology for continuous integration of code that helped in reduction of integration problems
+•	Trained a group of 20 associates on fundamentals of Angular JS for a head start in their respective projects
+•	Used Test Driven Development (TDD) programming method to make code refactoring and documentation simple
+•	Worked on branching and merging of code in Team Foundation Server (TFS) for development and releases
+
+ACADEMIC PROJECTS
+eCommerce Android App											Apr 2016
+Technologies: Android, Firebase, Cloudinary, GIT, Google login, Voice commands
+•	Designed and developed an app with Google login where users can buy and sell goods and services.
+•	Integrated Google Maps API to display products on the map
+Lexical Analyzer												Mar 2016
+Technologies: C++
+•	Built an application using C++ that extracts lexical content from source code files, analyzes and builds Abstract Syntax Tree (AST)
+•	Conducted metric analysis on the 	AST to analyse method sizes, complexities & dependency relationships
+Remote noSQL database												Nov 2015
+Technologies: C# 5.0, RESTful Web Services, XML
+•	Implemented remote NoSQL database with basic CRUD operations using .NET Framework Class Library.
+•	Measured the performance of remote database by calculating throughput and latency by increasing the load on server.
+TECHNICAL SKILLS
+Languages: C# 5.0, JavaScript, C++, Android Programming, Java, C, SQL, XML, HTML
+Framework: .NET 4.5, Angular JS, Jasmine, Nspec, Simple.Data
+Tools: Visual Studio 2015, Android Studio, Sublime, Team Foundation Server, GIT, SOAP UI, Fiddler
+Database: Oracle 11g, Redis, IndexDB
+Others: ESRI ArcGIS API v4, Firebase, Cloudinary, mustache.js, canvas.js
+AWARDS AND ACHIEVEMENTS
+•	Won Director’s Choice Award for the best Summer Intern Project at FedEx Services in 2016.
+•	Secured 1st prize in a coding competition at Tata Consultancy Services(TCS) Insurance Domain for developing an application using Angular JS for trading resources between humans and extra-terrestrial entities
