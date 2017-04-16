@@ -61,17 +61,14 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     }
 
     private void findDegrees(LongWritable key,Text value,Context context,String eachValue) throws IOException, InterruptedException{
-        if(Utility.currentFile.equals("Satish.txt")){
-            String s = Utility.currentFile;
-        }
         if(isMatchingDegree(eachValue)){
-            context.write(new Text(Utility.currentFile),new Text("Degree: "+Utility.degrees.get(eachValue)));
+            context.write(new Text(Utility.currentFile),new Text("Degree:"+Utility.degrees.get(eachValue)));
         }
     }
 
     private void findPhoneNumber(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
         if (eachValue.matches(Utility.VALID_PHONENUMBER)) {
-            context.write(new Text(Utility.currentFile), new Text("PhoneNumber :" + eachValue));
+            context.write(new Text(Utility.currentFile), new Text("PhoneNumber:" + eachValue));
         }
     }
 
@@ -87,12 +84,12 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         if(eachValue.contains("\\")|| eachValue.contains("//")){
             Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
             if (gpaMatcher.find()) {
-                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(2)));
+                context.write(new Text(Utility.currentFile), new Text("GPA:" + gpaMatcher.group(2)));
             }
         }else{
             Matcher gpaMatcher = Utility.VALID_GPA_SEPARATOR.matcher(eachValue);
             if (gpaMatcher.find()) {
-                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(1)));
+                context.write(new Text(Utility.currentFile), new Text("GPA:" + gpaMatcher.group(1)));
             }
         }
 
