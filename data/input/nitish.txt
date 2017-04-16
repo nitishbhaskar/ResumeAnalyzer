@@ -40,7 +40,7 @@ Technologies: C# 5.0, RESTful Web Services, XML
 •	Measured the performance of remote database by calculating throughput and latency by increasing the load on server.
 TECHNICAL SKILLS
 Languages: C# 5.0, JavaScript, C++, Android Programming, Java, C, SQL, XML, HTML
-Framework: .NET 4.5, Angular JS, Jasmine, Nspec, Simple.Data
+Framework: .NET 4.5, AngularJS, Jasmine, Nspec, Simple.Data
 Tools: Visual Studio 2015, Android Studio, Sublime, Team Foundation Server, GIT, SOAP UI, Fiddler
 Database: Oracle 11g, Redis, IndexDB
 Others: ESRI ArcGIS API v4, Firebase, Cloudinary, mustache.js, canvas.js
