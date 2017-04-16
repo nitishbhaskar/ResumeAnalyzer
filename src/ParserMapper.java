@@ -35,6 +35,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         findMatchingSkills(key, value, context, eachValue);
         findPhoneNumber(key, value, context, eachValue);
         findGPA(key, value, context, eachValue);
+        findDegrees(key,value,context,eachValue);
 
 
     }
@@ -59,6 +60,15 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         }
     }
 
+    private void findDegrees(LongWritable key,Text value,Context context,String eachValue) throws IOException, InterruptedException{
+        if(Utility.currentFile.equals("Satish.txt")){
+            String s = Utility.currentFile;
+        }
+        if(isMatchingDegree(eachValue)){
+            context.write(new Text(Utility.currentFile),new Text("Degree: "+Utility.degrees.get(eachValue)));
+        }
+    }
+
     private void findPhoneNumber(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
         if (eachValue.matches(Utility.VALID_PHONENUMBER)) {
             context.write(new Text(Utility.currentFile), new Text("PhoneNumber :" + eachValue));
@@ -67,6 +77,10 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     private boolean isMatchingSkill(String word) {
         return Utility.requiredSkills.containsKey(word.toLowerCase());
+    }
+
+    private boolean isMatchingDegree(String word){
+        return Utility.degrees.containsKey(word);
     }
 
     private void findGPA(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
