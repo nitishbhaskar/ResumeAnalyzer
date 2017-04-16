@@ -36,6 +36,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         findPhoneNumber(key, value, context, eachValue);
         findGPA(key, value, context, eachValue);
 
+
     }
 
     private void findEmail(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
