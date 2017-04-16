@@ -1,0 +1,54 @@
+SATISH GOSWAMI
+                404 Greenwood Pl., Syracuse NY-13210 • sgoswami@syr.edu • (315)450‐7414
+
+EDUCATION
+
+Syracuse University                                                                            Syracuse, NY                                                                     		              May 2017
+Master’s in Computer Engineering                                                                                                                                           		                  3.9 GPA
+Coursework: Advanced Data Structures and Algorithms, Software Modeling and Analysis, Object Oriented Design,
+Computer Security, Android Programming, Design Patterns, Cloud Computing
+University of Pune                                                                                Pune, India                                                                       		              July 2013
+Bachelor’s in Computer Engineering	                                                                                                                                 		                  3.8 GPA
+
+TECHNICAL SKILLS
+
+Programming Languages: C++, Java, C, C#, Android, HTML, SQL
+Operating Systems: Linux, Windows
+Frameworks: .NET Framework
+Tools: Microsoft Visual Studio, GDB, Axis Change Management
+Other: Object Oriented Programming, Data Structures, TCP/IP, Design Patterns
+
+MAJOR PROJECTS
+
+System and Web Attacks and Defenses, Syracuse University                                                                                                        Aug 2016 - Dec 2016
+•	Implemented major types of attacks and their defense mechanisms on Linux platform as part of System and Web Security.
+Attacks such as Race Condition Vulnerability, Shellshock, CSRF, etc.
+Remote Attestation protocol, Critical Technologies                                                                                                                         Jul 2016 – Sept 2016
+•	Developed Remote Attestation Protocol for US Defense Advanced Research Projects Agency to attest Client Firmware to the server end to access resources present at the server. Languages Used – C, C++ on Linux Platform
+SUFS Part Time Android Application, Syracuse University                                                                                                             Jan 2016 - May 2016
+•	Developed an Android Application for Syracuse University Food Services employees which provides University Students with the option of managing their work shifts. https://play.google.com/store/apps/details?id=com.project.goswa.sufs
+Multi-Threaded Code Parser and Analyzer, Syracuse University                                                                                               Jan 2016 - Apr 2016
+•	Implemented a Code Parser and Analyzer in C++ using State Based Pattern to tokenize multiple modules of code written in C++, Java, C# and analyzed them to compute the complexity and size of the functions
+Abstract Syntax Tree, Syracuse University                                                                                                                                           Jan 2016 - Apr 2016
+•	Developed an Abstract Syntax tree in C++ to determine hierarchy of Classes, Cyclomatic Complexity and size of functions in Object Oriented programming languages like C++, Java, C#
+Multi-Threaded Remote NoSQL Database, Syracuse University                                                                                                   Aug 2015 - Nov 2015
+•	Implemented a Multi-Threaded Remote NoSQL Key-Value Database in C# on .NET framework for managing Big Data efficiently by using Sharding and persistence techniques.
+Resilience – Batch Optimization, Wipro Technologies                                                                                                                     Aug 2014 - July 2015
+•	Analyzed and optimized 3100 long running batch jobs by making code changes in C++ and COBOL to enhance the speed of the jobs and efficiency of the mainframe systems
+Resilience – HA Movement, Wipro Technologies                                                                                                                               Nov 2013 - July 2015
+•	Developed and migrated 4000 BAU batch jobs from existing Logical Partitioning regions to high availability regions of Client’s Mainframe systems for better processing
+User Space TCP/IP Stack in Linux, University of Pune                                                                                                                  July 2012 - May 2013
+•	Implemented a User Space TCP/IP Network Stack in C language on Linux that enabled the packet capture to 100% during data reception across network.  http://www.theijes.com/papers/v2-i4/part.%20(2)/C0242018021.pdf
+
+EXPERIENCE
+
+Syracuse University                                                                           Syracuse, NY                                                                                   Aug 2016 – May 2017
+Graduate Teaching Assistant
+•	Mentored and worked on C#, and C++ Projects for Software Modeling and Analysis and Object Oriented Design courses
+Critical Technologies                                                                         Syracuse, NY                                                                                   Jul 2016 – Sept 2016
+Software Intern
+•	Developed code in C++ and C to build a Remote Attestation Protocol by accessing TPM chip values and serving it to the web app to get machine’s data
+Wipro Technologies                                                                        Bangalore, India                                                            	           Nov 2013 - July 2015
+Software Engineer
+•	Executed projects on Customer Interfacing Platform for a UK based bank using C++
+•	Developed, Co-ordinated and successfully delivered one entire phase of a Banking Project by handling 25 implementations

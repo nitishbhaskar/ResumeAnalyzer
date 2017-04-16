@@ -8,13 +8,17 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
+import org.apache.oro.text.regex.Util;
 
 public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
-        getCurrentFileName(context);
+
+        if(!isNewFile(context)){
+            Utility.incrementLineCountOfThisFile();
+        }
 
         for (String eachValue : valueArray) {
             if (!eachValue.equals("")) {
@@ -72,9 +76,18 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     }
 
-    private void getCurrentFileName(Context context){
+
+    private void findLocation(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+
+    }
+
+    private boolean isNewFile(Context context){
         FileSplit fileSplit = (FileSplit)context.getInputSplit();
         String filename = fileSplit.getPath().getName();
+        if(filename.matches(Utility.currentFile))
+            return false;
         Utility.currentFile = filename;
+        Utility.currentLineCount = 0;
+        return true;
     }
 }
