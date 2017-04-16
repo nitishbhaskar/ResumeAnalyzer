@@ -15,6 +15,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         findEmailAndLinks(key, value, context);
         findPhoneNumber(key, value, context);
+        findGPA(key,value,context);
     }
 
     private void findEmailAndLinks(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
@@ -49,6 +50,17 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     private boolean isMatchingSkill(String word) {
         return Utility.requiredSkills.containsKey(word.toLowerCase());
+    }
+
+    private void findGPA(LongWritable key,Text value,Context context)throws IOException, InterruptedException{
+        String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
+        for(String gpaData:valueArray){
+            Matcher gpaMatcher = Utility.VALID_GPA.matcher(gpaData);
+            if(gpaMatcher.find()){
+                context.write(new Text(Utility.currentFile), new Text("GPA: "+gpaMatcher.group(2)));
+            }
+        }
+
     }
 
 }

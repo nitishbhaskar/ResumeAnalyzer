@@ -38,4 +38,6 @@ public class Utility {
             requiredSkills.put(skillsJSON.get(i).toString().toLowerCase(),1);
         }
     }
+
+    public static Pattern VALID_GPA = Pattern.compile("([^ ]*)([0-3]\\.\\d?\\d|4\\.0)");
 }
