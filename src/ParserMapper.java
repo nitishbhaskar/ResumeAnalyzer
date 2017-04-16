@@ -22,13 +22,20 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
         for (String eachValue : valueArray) {
             if (!eachValue.equals("")) {
-                findEmail(key, value, context, eachValue);
-                findLinks(key, value, context, eachValue);
-                findMatchingSkills(key, value, context, eachValue);
-                findPhoneNumber(key, value, context, eachValue);
-                findGPA(key, value, context, eachValue);
+                parseRequirements(key, value, context, eachValue);
             }
         }
+    }
+
+    private void parseRequirements(LongWritable key, Text value, Context context, String eachValue)
+            throws IOException, InterruptedException {
+
+        findEmail(key, value, context, eachValue);
+        findLinks(key, value, context, eachValue);
+        findMatchingSkills(key, value, context, eachValue);
+        findPhoneNumber(key, value, context, eachValue);
+        findGPA(key, value, context, eachValue);
+
     }
 
     private void findEmail(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
