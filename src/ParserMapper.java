@@ -58,10 +58,18 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     }
 
     private void findGPA(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
-        Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
-        if (gpaMatcher.find()) {
-            context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(2)));
+        if(eachValue.contains("\\")|| eachValue.contains("//")){
+            Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
+            if (gpaMatcher.find()) {
+                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(2)));
+            }
+        }else{
+            Matcher gpaMatcher = Utility.VALID_GPA_SEPARATOR.matcher(eachValue);
+            if (gpaMatcher.find()) {
+                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(1)));
+            }
         }
+
     }
 
     private void getCurrentFileName(Context context){

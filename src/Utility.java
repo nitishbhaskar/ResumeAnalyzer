@@ -39,5 +39,6 @@ public class Utility {
         }
     }
 
-    public static Pattern VALID_GPA = Pattern.compile("([^ ]*)([0-3]\\.\\d?\\d|4\\.0)");
+    public static Pattern VALID_GPA = Pattern.compile("([^ ]*)([0-3]\\.\\d?\\d|4\\.0)"); //format 3.78
+    public static Pattern VALID_GPA_SEPARATOR = Pattern.compile("([0-3]\\.\\d?\\d|4\\.0)"); //format 3.5/4.0
 }
