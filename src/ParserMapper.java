@@ -30,12 +30,12 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     private void parseRequirements(Context context, String eachValue)
             throws IOException, InterruptedException {
 
-        findEmail(context, eachValue);
-        findLinks(context, eachValue);
-        findMatchingSkills(context, eachValue);
-        findPhoneNumber(context, eachValue);
-        findGPA(context, eachValue);
-        findLocation(context, eachValue);
+        findEmail(key, value, context, eachValue);
+        findLinks(key, value, context, eachValue);
+        findMatchingSkills(key, value, context, eachValue);
+        findPhoneNumber(key, value, context, eachValue);
+        findGPA(key, value, context, eachValue);
+        findDegrees(key,value,context,eachValue);
     }
 
     private void findEmail(Context context, String eachValue) throws IOException, InterruptedException {
@@ -58,9 +58,16 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         }
     }
 
+    private void findDegrees(LongWritable key,Text value,Context context,String eachValue) throws IOException, InterruptedException{
+        if(isMatchingDegree(eachValue)){
+            context.write(new Text(Utility.currentFile),new Text("Degree:"+Utility.degrees.get(eachValue)));
+        }
+    }
+
+    private void findPhoneNumber(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
     private void findPhoneNumber(Context context, String eachValue) throws IOException, InterruptedException {
         if (eachValue.matches(Utility.VALID_PHONENUMBER)) {
-            context.write(new Text(Utility.currentFile), new Text("PhoneNumber :" + eachValue));
+            context.write(new Text(Utility.currentFile), new Text("PhoneNumber:" + eachValue));
         }
     }
 
@@ -68,16 +75,21 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         return Utility.requiredSkills.containsKey(word.toLowerCase());
     }
 
+    private boolean isMatchingDegree(String word){
+        return Utility.degrees.containsKey(word);
+    }
+
+
     private void findGPA(Context context, String eachValue) throws IOException, InterruptedException {
         if(eachValue.contains("\\")|| eachValue.contains("//")){
             Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
             if (gpaMatcher.find()) {
-                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(2)));
+                context.write(new Text(Utility.currentFile), new Text("GPA:" + gpaMatcher.group(2)));
             }
         }else{
             Matcher gpaMatcher = Utility.VALID_GPA_SEPARATOR.matcher(eachValue);
             if (gpaMatcher.find()) {
-                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(1)));
+                context.write(new Text(Utility.currentFile), new Text("GPA:" + gpaMatcher.group(1)));
             }
         }
 

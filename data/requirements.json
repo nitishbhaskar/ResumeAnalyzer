@@ -9,5 +9,21 @@
     ".NET",
     "Linux",
     "TCP/IP"
+  ],
+  "degree":[
+    "MS",
+    "M.S",
+    "Master’s",
+    "M.S.",
+    "Master's",
+    "Master",
+    "BS",
+    "B.S.",
+    "Bachelor's",
+    "Bachelor’s",
+    "Bachelor",
+    "PHD",
+    "Phd",
+    "Doctrate"
   ]
 }

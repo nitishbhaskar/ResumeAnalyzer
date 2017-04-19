@@ -22,11 +22,7 @@ public class Utility {
     public static String currentResumeSection;
 
     public static HashMap<String, Integer> requiredSkills = new HashMap<>();
-    public static HashSet<String> resumeSections = new HashSet<>();
-
-    // Stores states both acronyms and full names of United States ONLY!
-    public static HashSet<String> USStates = new HashSet<>();
-
+    public static HashMap<String,String> degrees = new HashMap<>();
     public static DecimalFormat df = new DecimalFormat("#.00");
 
     public static Pattern VALID_EMAIL_ADDRESS_REGEX =
@@ -48,6 +44,24 @@ public class Utility {
             "|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1" +
             "|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$";
 
+    public static void addDegrees(JSONArray degreeJSON) throws JSONException {
+        for (int i = 0; i < degreeJSON.length(); i++) {
+            degrees.put(degreeJSON.get(i).toString(), checkDegree(degreeJSON.get(i).toString()) );
+        }
+    }
+
+    public static String checkDegree(String degree){
+        if(degree.startsWith("M")){
+            return "Master's";
+        }else if(degree.startsWith("B")){
+            return "Bachelor's";
+        }else if(degree.startsWith("D") || degree.toLowerCase().equals("phd")){
+            return "Doctrate";
+        }else{
+            return "";
+        }
+    }
+
     public static Pattern VALID_GPA = Pattern.compile("([^ ]*)([0-3]\\.\\d?\\d|4\\.0)"); //format 3.78
     public static Pattern VALID_GPA_SEPARATOR = Pattern.compile("([0-3]\\.\\d?\\d|4\\.0)"); //format 3.5/4.0
 
@@ -63,6 +77,4 @@ public class Utility {
             requiredSkills.put(skillsJSON.get(i).toString().toLowerCase(),1);
         }
     }
-
-
 }
