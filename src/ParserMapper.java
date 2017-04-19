@@ -30,10 +30,8 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     private void parseRequirements(Context context, String eachValue, String[] valueArray)
             throws IOException, InterruptedException {
 
-        if(Utility.currentLineCount <= Utility.LOCATION_DEPTH){
-            findName(context, eachValue, valueArray);
-            findLocation(context, eachValue);
-        }
+        if(!Utility.nameFound) findName(context, eachValue, valueArray);
+        if(!Utility.locationFound) findLocation(context, eachValue);
         findEmail(context, eachValue);
         findLinks(context, eachValue);
         findMatchingSkills(context, eachValue);
@@ -102,16 +100,20 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     private void findLocation(Context context, String eachValue) throws IOException, InterruptedException {
 
         String[] locationList = eachValue.split("[\\s@&.?$+-]+");
+        String location = "";
         for(String eachLocationProbab : locationList){
-            if(Utility.USStatesAcronyms.contains(eachLocationProbab) || Utility.USStatesFullNames.contains(eachLocationProbab))
-                context.write(new Text(Utility.currentFile), new Text("Location: " + eachLocationProbab));
+            if(Utility.USStatesAcronyms.contains(eachLocationProbab) || Utility.USStatesFullNames.contains(eachLocationProbab)) {
+                Utility.locationFound = true;
+                location = eachLocationProbab;
+                if(Utility.mapOfUSStates.containsKey(location))
+                    location = Utility.mapOfUSStates.get(location);
+                context.write(new Text(Utility.currentFile), new Text("Location: " + location));
+            }
         }
     }
 
     private void findName(Context context, String eachValue, String[] valueArray) throws IOException, InterruptedException {
 
-        if(Utility.nameFound)
-            return;
         String name = "";
 
         for(String eachString : valueArray){
@@ -142,6 +144,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         Utility.currentFile = filename;
         Utility.currentLineCount = 1;
         Utility.nameFound = false;
+        Utility.locationFound = false;
         return true;
     }
 }

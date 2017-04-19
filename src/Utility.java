@@ -23,6 +23,7 @@ public class Utility {
     public static String currentResumeSection;
     public static String DICTIONARY = "./data/words.txt";
     public static boolean nameFound  = false;
+    public static boolean locationFound  = false;
     public static HashMap<String, Integer> requiredSkills = new HashMap<>();
     public static HashMap<String,String> degrees = new HashMap<>();
     public static HashMap<String, Integer> USStates = new HashMap<>();
