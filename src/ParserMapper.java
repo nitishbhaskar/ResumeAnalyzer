@@ -22,44 +22,43 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
         for (String eachValue : valueArray) {
             if (!eachValue.equals("")) {
-                parseRequirements(key, value, context, eachValue);
+                parseRequirements(context, eachValue);
             }
         }
     }
 
-    private void parseRequirements(LongWritable key, Text value, Context context, String eachValue)
+    private void parseRequirements(Context context, String eachValue)
             throws IOException, InterruptedException {
 
-        findEmail(key, value, context, eachValue);
-        findLinks(key, value, context, eachValue);
-        findMatchingSkills(key, value, context, eachValue);
-        findPhoneNumber(key, value, context, eachValue);
-        findGPA(key, value, context, eachValue);
-
-
+        findEmail(context, eachValue);
+        findLinks(context, eachValue);
+        findMatchingSkills(context, eachValue);
+        findPhoneNumber(context, eachValue);
+        findGPA(context, eachValue);
+        findLocation(context, eachValue);
     }
 
-    private void findEmail(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+    private void findEmail(Context context, String eachValue) throws IOException, InterruptedException {
         Matcher emailMatcher = Utility.VALID_EMAIL_ADDRESS_REGEX.matcher(eachValue);
         if (emailMatcher.find()) { //Check for email address regex pattern
             context.write(new Text(Utility.currentFile), new Text("email:" + eachValue));
         }
     }
 
-    private void findLinks(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+    private void findLinks(Context context, String eachValue) throws IOException, InterruptedException {
         Matcher urlMatcher = Utility.VALID_URL.matcher(eachValue);
         if (urlMatcher.find()) { //Check for URL regex pattern
             context.write(new Text(Utility.currentFile), new Text("link:" + eachValue));
         }
     }
 
-    private void findMatchingSkills(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+    private void findMatchingSkills(Context context, String eachValue) throws IOException, InterruptedException {
         if (isMatchingSkill(eachValue)) { //Check if the word matches any of the required skill sets.
             context.write(new Text(Utility.currentFile), new Text("skill:" + eachValue));
         }
     }
 
-    private void findPhoneNumber(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+    private void findPhoneNumber(Context context, String eachValue) throws IOException, InterruptedException {
         if (eachValue.matches(Utility.VALID_PHONENUMBER)) {
             context.write(new Text(Utility.currentFile), new Text("PhoneNumber :" + eachValue));
         }
@@ -69,7 +68,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         return Utility.requiredSkills.containsKey(word.toLowerCase());
     }
 
-    private void findGPA(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+    private void findGPA(Context context, String eachValue) throws IOException, InterruptedException {
         if(eachValue.contains("\\")|| eachValue.contains("//")){
             Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
             if (gpaMatcher.find()) {
@@ -85,7 +84,10 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     }
 
 
-    private void findLocation(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
+    private void findLocation(Context context, String eachValue) throws IOException, InterruptedException {
+        if(Utility.currentLineCount > Utility.LOCATION_DEPTH)
+            return;
+        String city, state, zip;
 
     }
 

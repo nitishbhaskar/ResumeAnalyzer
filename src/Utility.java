@@ -18,7 +18,15 @@ public class Utility {
     //
     public static String currentFile = "";
     public static int currentLineCount = 0;
+    public static int LOCATION_DEPTH = 5;
+    public static String currentResumeSection;
+
     public static HashMap<String, Integer> requiredSkills = new HashMap<>();
+    public static HashSet<String> resumeSections = new HashSet<>();
+
+    // Stores states both acronyms and full names of United States ONLY!
+    public static HashSet<String> USStates = new HashSet<>();
+
     public static DecimalFormat df = new DecimalFormat("#.00");
 
     public static Pattern VALID_EMAIL_ADDRESS_REGEX =
