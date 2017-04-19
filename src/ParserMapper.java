@@ -22,33 +22,37 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
         for (String eachValue : valueArray) {
             if (!eachValue.equals("")) {
-                parseRequirements(context, eachValue);
+                parseRequirements(context, eachValue, valueArray);
             }
         }
     }
 
-    private void parseRequirements(Context context, String eachValue)
+    private void parseRequirements(Context context, String eachValue, String[] valueArray)
             throws IOException, InterruptedException {
 
-        findEmail(key, value, context, eachValue);
-        findLinks(key, value, context, eachValue);
-        findMatchingSkills(key, value, context, eachValue);
-        findPhoneNumber(key, value, context, eachValue);
-        findGPA(key, value, context, eachValue);
-        findDegrees(key,value,context,eachValue);
+        if(Utility.currentLineCount <= Utility.LOCATION_DEPTH){
+            findName(context, eachValue, valueArray);
+            findLocation(context, eachValue);
+        }
+        findEmail(context, eachValue);
+        findLinks(context, eachValue);
+        findMatchingSkills(context, eachValue);
+        findPhoneNumber(context, eachValue);
+        findGPA(context, eachValue);
+        findDegrees(context,eachValue);
     }
 
     private void findEmail(Context context, String eachValue) throws IOException, InterruptedException {
         Matcher emailMatcher = Utility.VALID_EMAIL_ADDRESS_REGEX.matcher(eachValue);
         if (emailMatcher.find()) { //Check for email address regex pattern
-            context.write(new Text(Utility.currentFile), new Text("email:" + eachValue));
+            context.write(new Text(Utility.currentFile), new Text("Email: " + eachValue));
         }
     }
 
     private void findLinks(Context context, String eachValue) throws IOException, InterruptedException {
         Matcher urlMatcher = Utility.VALID_URL.matcher(eachValue);
         if (urlMatcher.find()) { //Check for URL regex pattern
-            context.write(new Text(Utility.currentFile), new Text("link:" + eachValue));
+            context.write(new Text(Utility.currentFile), new Text("Link:" + eachValue));
         }
     }
 
@@ -58,16 +62,15 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         }
     }
 
-    private void findDegrees(LongWritable key,Text value,Context context,String eachValue) throws IOException, InterruptedException{
+    private void findDegrees(Context context,String eachValue) throws IOException, InterruptedException{
         if(isMatchingDegree(eachValue)){
-            context.write(new Text(Utility.currentFile),new Text("Degree:"+Utility.degrees.get(eachValue)));
+            context.write(new Text(Utility.currentFile),new Text("Degree: "+Utility.degrees.get(eachValue)));
         }
     }
 
-    private void findPhoneNumber(LongWritable key, Text value, Context context, String eachValue) throws IOException, InterruptedException {
     private void findPhoneNumber(Context context, String eachValue) throws IOException, InterruptedException {
         if (eachValue.matches(Utility.VALID_PHONENUMBER)) {
-            context.write(new Text(Utility.currentFile), new Text("PhoneNumber:" + eachValue));
+            context.write(new Text(Utility.currentFile), new Text("PhoneNumber: " + eachValue));
         }
     }
 
@@ -84,12 +87,12 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         if(eachValue.contains("\\")|| eachValue.contains("//")){
             Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
             if (gpaMatcher.find()) {
-                context.write(new Text(Utility.currentFile), new Text("GPA:" + gpaMatcher.group(2)));
+                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(2)));
             }
         }else{
             Matcher gpaMatcher = Utility.VALID_GPA_SEPARATOR.matcher(eachValue);
             if (gpaMatcher.find()) {
-                context.write(new Text(Utility.currentFile), new Text("GPA:" + gpaMatcher.group(1)));
+                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(1)));
             }
         }
 
@@ -97,10 +100,38 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
 
     private void findLocation(Context context, String eachValue) throws IOException, InterruptedException {
-        if(Utility.currentLineCount > Utility.LOCATION_DEPTH)
-            return;
-        String city, state, zip;
 
+        String[] locationList = eachValue.split("[\\s@&.?$+-]+");
+        for(String eachLocationProbab : locationList){
+            if(Utility.USStatesAcronyms.contains(eachLocationProbab) || Utility.USStatesFullNames.contains(eachLocationProbab))
+                context.write(new Text(Utility.currentFile), new Text("Location: " + eachLocationProbab));
+        }
+    }
+
+    private void findName(Context context, String eachValue, String[] valueArray) throws IOException, InterruptedException {
+
+        if(Utility.nameFound)
+            return;
+        String name = "";
+
+        for(String eachString : valueArray){
+            String[] namesList = eachString.split("[\\s@&.?$+:-]+");
+            for(String eachNameProbab : namesList){
+                // keep on checking for words which are not in dictionary and keep add it to names string
+                if(!Dictionary.contains(eachNameProbab)){
+                    name = name + " " + eachNameProbab;
+                }
+            }
+        }
+
+        if(name.matches("")){
+            // Could not detect name in our parsing rule
+            context.write(new Text(Utility.currentFile), new Text("Name: " + "UNKNOWN"));
+        }
+        else
+            context.write(new Text(Utility.currentFile), new Text("Name: " + name));
+
+        Utility.nameFound = true;
     }
 
     private boolean isNewFile(Context context){
@@ -109,7 +140,8 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         if(filename.matches(Utility.currentFile))
             return false;
         Utility.currentFile = filename;
-        Utility.currentLineCount = 0;
+        Utility.currentLineCount = 1;
+        Utility.nameFound = false;
         return true;
     }
 }

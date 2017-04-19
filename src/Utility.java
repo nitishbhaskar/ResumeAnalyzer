@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -18,11 +19,13 @@ public class Utility {
     //
     public static String currentFile = "";
     public static int currentLineCount = 0;
-    public static int LOCATION_DEPTH = 5;
+    public static int LOCATION_DEPTH = 2;
     public static String currentResumeSection;
-
+    public static String DICTIONARY = "./data/words.txt";
+    public static boolean nameFound  = false;
     public static HashMap<String, Integer> requiredSkills = new HashMap<>();
     public static HashMap<String,String> degrees = new HashMap<>();
+    public static HashMap<String, Integer> USStates = new HashMap<>();
     public static DecimalFormat df = new DecimalFormat("#.00");
 
     public static Pattern VALID_EMAIL_ADDRESS_REGEX =
@@ -77,4 +80,74 @@ public class Utility {
             requiredSkills.put(skillsJSON.get(i).toString().toLowerCase(),1);
         }
     }
+
+    public static HashSet<String> USStatesAcronyms = new HashSet<>();
+    public static HashSet<String> USStatesFullNames = new HashSet<>();
+    public static void populateStatesData(){
+
+        for(Map.Entry<String, String> entry : mapOfUSStates.entrySet()){
+            USStatesAcronyms.add(entry.getKey());
+            USStatesFullNames.add(entry.getValue());
+        }
+    }
+
+    // US States Names
+    public final static HashMap<String, String> mapOfUSStates = new HashMap<String, String>() {
+        {
+            put("AL", "Alabama");
+            put("AK", "Alaska");
+            put("AZ", "Arizona");
+            put("AR", "Arkansas");
+            put("CA", "California");
+            put("CO", "Colorado");
+            put("CT", "Connecticut");
+            put("DE", "Delaware");
+            put("DC", "Dist of Columbia");
+            put("FL", "Florida");
+            put("GA", "Georgia");
+            put("HI", "Hawaii");
+            put("ID", "Idaho");
+            put("IL", "Illinois");
+            put("IN", "Indiana");
+            put("IA", "Iowa");
+            put("KS", "Kansas");
+            put("KY", "Kentucky");
+            put("LA", "Louisiana");
+            put("ME", "Maine");
+            put("MD", "Maryland");
+            put("MA", "Massachusetts");
+            put("MI", "Michigan");
+            put("MN", "Minnesota");
+            put("MS", "Mississippi");
+            put("MO", "Missouri");
+            put("MT", "Montana");
+            put("NE", "Nebraska");
+            put("NV", "Nevada");
+            put("NH", "New Hampshire");
+            put("NJ", "New Jersey");
+            put("NM", "New Mexico");
+            put("NY", "New York");
+            put("NC", "North Carolina");
+            put("ND", "North Dakota");
+            put("OH", "Ohio");
+            put("OK", "Oklahoma");
+            put("OR", "Oregon");
+            put("PA", "Pennsylvania");
+            put("RI", "Rhode Island");
+            put("SC", "South Carolina");
+            put("SD", "South Dakota");
+            put("TN", "Tennessee");
+            put("TX", "Texas");
+            put("UT", "Utah");
+            put("VT", "Vermont");
+            put("VA", "Virginia");
+            put("WA", "Washington");
+            put("WV", "West Virginia");
+            put("WI", "Wisconsin");
+            put("WY", "Wyoming");
+        }
+    };
+
+
+
 }
