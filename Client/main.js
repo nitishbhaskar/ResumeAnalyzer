@@ -75,8 +75,14 @@ resumeParser.service("resumeService", function () {
     this.download = function () {
         if (this.matchedSkills)
             this.matchedSkills = this.matchedSkills.toString().split(",");
+        else{
+            this.matchedSkills = [];
+        }
         if (this.matchedDegree)
             this.matchedDegree = this.matchedDegree.toString().split(",");
+        else{
+            this.matchedDegree = [];
+        }
         var encodedUri = "data:text/json;charset=utf-16," + encodeURIComponent(JSON.stringify({
                 "reqSkills": this.matchedSkills,
                 "degree": this.degree,
