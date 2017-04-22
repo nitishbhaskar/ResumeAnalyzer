@@ -1,34 +1,40 @@
 <html>
-    <script src="angular.min.js" type="text/javascript"></script>
-    <script src="underscore.min.js" type="text/javascript"></script>
-    <script src="main.js" type="text/javascript"></script>
-    <link href="bootstrap.min.css" rel="stylesheet" />
-    <link href="main.css" rel="stylesheet" />
-    <title>Resume Parser</title>
-    <h1>Admin Page</h1>
-    <body data-ng-app="ResumeParser">
-        <div data-ng-controller="mainController">
-            <div class="row-fluid">
-                <div class="row-fluid">
-                </div>
-                <div class="row-fluid">
-                    <div class="span3">Requirements:</div>
-                    <textarea id="requirements" type="text" data-ng-model="Main.skills"></textarea><br/>
-                </div>
-                
-                <div class="row-fluid">
-                    <div class="span3">Skills extracted:</div>
-                    <textarea id="skills" type="text" data-ng-model="Main.matchedSkills"></textarea><br/>
-                </div>
-                <a id="downloadLink" href="Main.link" ng-hide="true">Download</a>
-                <span ng-bind="Main.matched"></span>
-            </div>
-            <hr/>
-            <div class="row-fluid">
-                <input id="submitBtn" type="button" value="Submit" data-ng-click="Main.submit()"/>
-                <input id="downloadBtn" type="button" value="Download" data-ng-click="Main.download()"/>
-                <input type="reset" value="Reset page" onclick="window.location.reload()"/>
-            </div>
+<script src="angular.min.js" type="text/javascript"></script>
+<script src="underscore.min.js" type="text/javascript"></script>
+<script src="main.js" type="text/javascript"></script>
+<link href="bootstrap.min.css" rel="stylesheet"/>
+<link href="main.css" rel="stylesheet"/>
+<title>Resume Parser</title>
+<h1>Admin Page</h1>
+<body data-ng-app="ResumeParser">
+<div data-ng-controller="mainController">
+    <div class="row-fluid">
+        <div class="row-fluid">
         </div>
-    </body>
+        <div class="row-fluid">
+            <div class="span3 heading">Requirements:</div>
+            <textarea id="requirements" type="text" data-ng-model="Main.skills"></textarea><br/>
+            <input id="submitBtn" type="button" class="btn btn-primary" value="Submit" data-ng-click="Main.submit()"/>
+        </div>
+
+        <hr/>
+
+        <div class="row-fluid">
+
+            <div class="span3 heading">Skills:</div>
+            <textarea id="skills" type="text" data-ng-model="Main.matchedSkills"></textarea><br/>
+            <div class="span3 heading">Degree:</div>
+            <textarea id="degree" type="text" data-ng-model="Main.matchedDegree"></textarea><br/>
+            <div class="span3 heading">Experience:</div>
+            <textarea id="experience" type="text" data-ng-model="Main.matchedExperience"></textarea><br/>
+        </div>
+        <a id="downloadLink" href="Main.link" ng-hide="true">Download</a>
+    </div>
+    <div class="row-fluid">
+
+        <input id="downloadBtn" class="btn btn-success" type="button" value="Download" data-ng-click="Main.download()"/>
+        <input id="resetBtn" class="btn btn-danger" type="reset" value="Reset page" onclick="window.location.reload()"/>
+    </div>
+</div>
+</body>
 </html>
