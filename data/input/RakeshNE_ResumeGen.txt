@@ -1,0 +1,53 @@
+Rakesh Nallapeta Eshwaraiah                  GitHub : https://github.com/rakeshh91  
+Syracuse, NY 13210                      LinkedIn : https://www.linkedin.com/in/rakeshh91  
+Mobile : +1(315) 416-8394                                                    Email : rakeshh91@gmail.com  
+EDUCATION 
+Master of Science in Computer Engineering, Syracuse University, GPA: 3.74                           (A u gust ’15 – M a y ’17) 
+Bachelor of Engineering in Electronics & Communication, PES Institute of Technology, India, GPA: 3.94               ( J u n e ’09  –  May ’13) 
+TECHNICAL SKILLS 
+Language:  JAVA, Android programming, Swift, C#, .Net, C++, SQL, Ajax, JSP, JavaScript, Oracle SQL, HTML, CSS, XML, PHP, Python 
+Tools/Software: Android studio, Visual Studio 2015, Xamarin, IntelliJ, Xcode, Eclipse, Microsoft Server Management Studio, Database 
+management, Oracle DB, Google Analytics, Mobile Analytics, XAMPP, Firebase, Microsoft Dynamics AX 2012 R3, Windows Azure 
+PROFESSIONAL EXPERIENCE 
+Graduate Teaching Assistant for Mobile Application Programming at Syracuse University                           (Jan 2017 – Present) 
+Web & Mobile application developer (co-op) at 3iMobile                                            (Sept 2016  – Present) 
+Technology: Android, Java, Google/Firebase analytics, Web services, REST API, SOAP, Backend, Oracle DB, Oracle SQL, HTML, AJAX, 
+Tomcat Server, iOS, Swift, Xcode, CSS, JSP, JavaScript, Product flavoring 
+• Design and development of an interactive Android & iOS App used for learning English language for international students 
+• Identify defects, bug fixing, tracking usage with Firebase Analytics and creating multiple flavors(versions) of the app 
+• Maintain and update functionalities to the 3iMobile web application, handling database queries, updating UI fields, etc. 
+Playstore Link: https://play.google.com/store/apps/details?id=com.app.mobile3i&hl=en 
+Android developer intern for Motion Sensing Wearables at Intugine Technologies                            (May 2016 – July 2016) 
+Technology: Android, Java, BLE, Internet of Things (IOT), Nimble Ring, Speech Recognition, Google fit API, Events, Services 
+• Implemented gesture recognition algorithms using the data fetched from Smart Ring (Nimble) over Bluetooth Low Energy 
+• Controlled video player, music player and Philips smart lights using the gestures and point & lock the device feature  
+Programmer Analyst at Cognizant Technology Solutions, India Pvt. Ltd                      (Sep 2013 - July 2015) 
+Worked on Microsoft Dynamics AX 2012 R3 for UK ’s leading energy resources client. Project was implemented using agile methodology 
+• Designed & developed data migration tool using X++ to automate the data import/export process and reduced time consumption  
+• Designed UI & implemented database back up tool using X++ which avoided the intervention of technical team for backup 
+• Deployed Dynamics AX tool on Windows Azure cloud services platform which eased coordination between different teams 
+PROJECTS 
+Remote NoSQL database: Technology: C#, NoSQL, Visual Studio 2015, XML, SQL operations 
+• Designed & developed key/value pair database using C# that performs the CRUD operations based on XML files/messages 
+• The database was persisted periodically into an XML file such that the data can be stored on to an external memory 
+Code Analyzer: Technology: C++, Visual Studio 2015, Object oriented programming 
+• Developed lexical scanner to extract content from the code files using state design pattern, OOPS and analyzed the code syntax 
+• Implemented Abstract Syntax Tree to hold the details of all the scopes present in a source code file along with their metrics 
+Links Triplets: Technology: Java, Hadoop, Map-Reduce, Eclipse  
+• Designed Map-Reduce program to get unique page link triplets from a given set of link pairs with all 3-page links in a triplet distinct 
+Cherry Pick: Technology: Android, Java, REST API, JSON, Cloudinary, UPCDatabase Firebase, Git subversion control 
+• Developed an e-commerce app where users can sell their products or buy the products listed in the app.  
+• Provided option to contact and share via email, implemented bar code scanner and used GoogleMaps markers to locate the seller 
+       Playstore Link: https://play.google.com/store/apps/details?id=com.finalproject.rakesh.cherrypick&hl=en 
+Voice and Motion Controller: Technology: Android, Java, REST API, JSON, Motion sensors, Google voice to text 
+• Developed a controller for music player with shake detection using inbuilt sensors and Google speech to text to control the music 
+Playstore Link: https://play.google.com/store/apps/details?id=com.rakesh_ap2016.GPMusicController&hl=en 
+Mobile Analytics: Technology: Android, Java, Google Analytics, Mobile Analytics, Tracking data & users, Google BI 
+• Integrated google analytics for tracking data of the app to identify points of improvement in the user experience and optimization 
+Movies Database: Technology: Android, Java, C#, Xamarin, Visual Studio 2015, REST API, JSON, SQLite, Firebase, XML, PHP 
+• Designed and developed app to extract movies information as a JSON from REST API, storing & updating database on Firebase 
+Restaurant Finder: Technology: Swift, iOS, Xcode, Firebase, Factual API, Webservice, JSON, FacebookSDK, Maps, Animation 
+• Designed and developed an application to search for the restaurants based on search category and users can add their recipe 
+University Database Management System: Technology: MS SQL, Microsoft SQL Server Studio, SQL queries, ER and Data Modelling 
+• Designed the Entity Relationship Diagram and implemented the data model for a university database system 
+ 
