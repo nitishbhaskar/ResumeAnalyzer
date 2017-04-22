@@ -1,10 +1,38 @@
 body {
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
-    margin-top: 50px;
+    width: 60%;
+    margin-top: 20px;
 }
 
-textarea{
-    margin: 0px; width: 700px; height: 248px;
+#requirements{
+    width : 100%;
+    height: 20%;
+}
+
+#skills{
+    width : 100%;
+    height: 15%;
+}
+#degree{
+    width : 100%;
+    height: 5%;
+}
+#experience{
+    width : 100%;
+    height: 5%;
+}
+
+.heading{
+    margin: 5px;
+    font-weight: bold;
+}
+
+#submitBtn, #downloadBtn, #resetBtn{
+    float: right;
+    margin: 10px;
+}
+
+hr{
+    margin-top: 50px !important;
 }

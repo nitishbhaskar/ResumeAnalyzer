@@ -3,8 +3,6 @@
  */
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
@@ -14,12 +12,9 @@ import org.apache.poi.util.SystemOutLogger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.rmi.CORBA.Util;
-
 public class ResumeAnalyzerJob {
     public static void main(String[] args) throws Exception {
-        PDFConverter.convertPDFFiles("data\\sourceFiles\\","data\\input\\");
-        WordToTextConverter.convertWordFiles("data\\sourceFiles\\","data\\input\\");
+        FilesConverterUtility.convertFiles("data\\sourceFiles\\",args[0]); //converts all types of files to .txt format and puts in destination
         Dictionary.populate();
         Utility.populateStatesData();
         readFromRequirementsJSON();
