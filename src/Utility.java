@@ -20,6 +20,7 @@ public class Utility {
     public static String currentFile = "";
     public static int currentLineCount = 0;
     public static int LOCATION_DEPTH = 2;
+    public static int EXTRACTED_VALUES_COUNT = 9;
     public static String currentResumeSection;
     public static String DICTIONARY = "./data/words.txt";
     public static boolean nameFound  = false;

@@ -30,6 +30,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     private void parseRequirements(Context context, String eachValue, String[] valueArray)
             throws IOException, InterruptedException {
 
+
         if(!Utility.nameFound) findName(context, eachValue, valueArray);
         if(!Utility.locationFound) findLocation(context, eachValue);
         findEmail(context, eachValue);
@@ -43,7 +44,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     private void findEmail(Context context, String eachValue) throws IOException, InterruptedException {
         Matcher emailMatcher = Utility.VALID_EMAIL_ADDRESS_REGEX.matcher(eachValue);
         if (emailMatcher.find()) { //Check for email address regex pattern
-            context.write(new Text(Utility.currentFile), new Text("Email: " + eachValue));
+            context.write(new Text(Utility.currentFile), new Text("Email:" + eachValue));
         }
     }
 
@@ -56,19 +57,19 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     private void findMatchingSkills(Context context, String eachValue) throws IOException, InterruptedException {
         if (isMatchingSkill(eachValue)) { //Check if the word matches any of the required skill sets.
-            context.write(new Text(Utility.currentFile), new Text("skill:" + eachValue));
+            context.write(new Text(Utility.currentFile), new Text("Skill:" + eachValue));
         }
     }
 
     private void findDegrees(Context context,String eachValue) throws IOException, InterruptedException{
         if(isMatchingDegree(eachValue)){
-            context.write(new Text(Utility.currentFile),new Text("Degree: "+Utility.degrees.get(eachValue)));
+            context.write(new Text(Utility.currentFile),new Text("Degree:"+Utility.degrees.get(eachValue)));
         }
     }
 
     private void findPhoneNumber(Context context, String eachValue) throws IOException, InterruptedException {
         if (eachValue.matches(Utility.VALID_PHONENUMBER)) {
-            context.write(new Text(Utility.currentFile), new Text("PhoneNumber: " + eachValue));
+            context.write(new Text(Utility.currentFile), new Text("Phone:" + eachValue));
         }
     }
 
@@ -85,12 +86,12 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         if(eachValue.contains("\\")|| eachValue.contains("//")){
             Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
             if (gpaMatcher.find()) {
-                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(2)));
+                context.write(new Text(Utility.currentFile), new Text("GPA:" + gpaMatcher.group(2)));
             }
         }else{
             Matcher gpaMatcher = Utility.VALID_GPA_SEPARATOR.matcher(eachValue);
             if (gpaMatcher.find()) {
-                context.write(new Text(Utility.currentFile), new Text("GPA: " + gpaMatcher.group(1)));
+                context.write(new Text(Utility.currentFile), new Text("GPA:" + gpaMatcher.group(1)));
             }
         }
 
@@ -107,7 +108,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
                 location = eachLocationProbab;
                 if(Utility.mapOfUSStates.containsKey(location))
                     location = Utility.mapOfUSStates.get(location);
-                context.write(new Text(Utility.currentFile), new Text("Location: " + location));
+                context.write(new Text(Utility.currentFile), new Text("Location:" + location));
             }
         }
     }
@@ -121,17 +122,17 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
             for(String eachNameProbab : namesList){
                 // keep on checking for words which are not in dictionary and keep add it to names string
                 if(!Dictionary.contains(eachNameProbab)){
-                    name = name + " " + eachNameProbab;
+                    name = name + eachNameProbab + " ";
                 }
             }
         }
 
         if(name.matches("")){
             // Could not detect name in our parsing rule
-            context.write(new Text(Utility.currentFile), new Text("Name: " + "UNKNOWN"));
+            context.write(new Text(Utility.currentFile), new Text("Name:" + "UNKNOWN"));
         }
         else
-            context.write(new Text(Utility.currentFile), new Text("Name: " + name));
+            context.write(new Text(Utility.currentFile), new Text("Name:" + name.trim()));
 
         Utility.nameFound = true;
     }

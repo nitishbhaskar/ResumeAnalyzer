@@ -10,6 +10,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.poi.util.SystemOutLogger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +44,10 @@ public class ResumeAnalyzerJob {
         job.submit();
 
         boolean success = job.waitForCompletion(true);
+
+        // Job completes here and then we write the output data to Excel File
+        OutputProcessor op = new OutputProcessor(args[1], "output_intermediate/part-r-00000");
+        op.writeresultsToFile();
     }
 
     public static void deleteFolder(File folder) {

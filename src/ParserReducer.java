@@ -18,14 +18,14 @@ public class ParserReducer extends Reducer<Text, Text, Text, Text> {
         StringBuilder concatValues = new StringBuilder();
         for (Text text : values) {
             String[] valueArray = text.toString().trim().split(":");
-            if (valueArray[0].equals("skill")) {
+            if (valueArray[0].toLowerCase().equals("skill")) {
                 matchedSkills.add(valueArray[1]);
             }
-            concatValues.append(" ");
+            concatValues.append("|");
             concatValues.append(text.toString());
         }
-        concatValues.append(" ");
-        concatValues.append("matchedSkillScore:" + calculateMatchSkillScore());
+        concatValues.append("|");
+        concatValues.append("Score:" + calculateMatchSkillScore());
         context.write(key, new Text(concatValues.toString().trim()));
     }
 
