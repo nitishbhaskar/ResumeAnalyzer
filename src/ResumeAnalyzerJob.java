@@ -17,7 +17,8 @@ import javax.rmi.CORBA.Util;
 
 public class ResumeAnalyzerJob {
     public static void main(String[] args) throws Exception {
-
+        PDFConverter.convertPDFFiles("data\\sourceFiles\\","data\\input\\");
+        WordToTextConverter.convertWordFiles("data\\sourceFiles\\","data\\input\\");
         Dictionary.populate();
         Utility.populateStatesData();
         readFromRequirementsJSON();

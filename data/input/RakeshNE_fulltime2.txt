@@ -1,0 +1,53 @@
+Rakesh Nallapeta Eshwaraiah       Git Hub: https://github.com/rakeshh91  
+Syracuse, NY 13210                       LinkedIn: https://www.linkedin.com/in/rakeshh91  
+Mobile: +1(315) 416-8394                   Email: rakeshh91@gmail.com  
+ 
+EDUCATION 
+Master of Science in Computer Engineering, Syracuse University, GPA: 3.78                           ( Augu s t’ 15 – Present) 
+Bachelor of Engineering in Electronics & Communication, PES Institute of Technology, India, GPA: 3.94               ( J u n e ’09  –  May ’13) 
+COURSES 
+Software Modeling Analysis, Object Oriented Design, Design Patterns, Advanced Data Structures, Android Programming, Mobile 
+Application Programming (IOS), Human Computer Interaction, Software Engineering, Advanced Computer Architecture. 
+TECHNICAL SKILLS 
+Language:  JAVA, Android programming, C#, .Net, X++ (Dynamics AX), C++, MySQL, HTML, CSS, XML, JSON, PHP, C 
+Tools/Software: Android studio, Visual Studio 2015, IntelliJ, Google Analytics, Mobile Analytics, XAMPP, Firebase, Parse, Git 
+repositories, Microsoft Dynamics AX 2012 R3, Windows Azure, Sublime Text 2, NetBeans, Eclipse, MS Visio, Git subversion control. 
+PROFESSIONAL EXPERIENCE 
+Android developer intern for Motion Sensing Wearables at Intugine Technologies                            (May 2016 – July 2016) 
+Technology: Android, Java, Bluetooth, Motion Sensors, Internet of Things (IOT), Nimble Ring, Speech Recognition, Infotainment, Google 
+fit API, Fitness track, Event handling, Event listeners, Services, Native Code Integration. 
+• Implemented gesture recognition algorithms using the data fetched from Smart Ring (Nimble) over Bluetooth Low Energy 
+• Worked with A P I / SD K ’ s of other smart products like Philips smart lights 
+• Controlled video player, music player and Philips smart lights using the gestures and point & lock the device feature 
+• Working on end to end home and infotainment automation using the simple gesture movements captured using the Smart ring 
+Project Demo Link: https://www.youtube.com/watch?v=LMr31up2hCc  
+Programmer Analyst at Cognizant Technology Solutions, India Pvt. Ltd                      (Sep 2013 - July 2015) 
+Worked on Microsoft Dynamics AX 2012 R3 for UK ’s leading energy resources client. Project was implemented using agile methodology 
+• Designed & developed data migration tool using X++ to automate the data import/export process and reduced time consumption 
+• Designed UI & implemented database back up tool using X++ which avoided the intervention of technical team for database 
+backup from server, generated alerts to the active users of Dynamics AX within the organization and decreased manual work 
+•   Deployed Ax tool on Windows Azure and set up as cloud access 
+PROJECTS 
+Cherry Pick (Android App): Technology: Android, Java, REST API, JSON, Cloudinary, UPCDatabase Firebase, Git subversion control 
+• Developed an online buy/sell app where users can sell their products or buy the products listed in the app 
+• Used voice recognition for navigating through the app, implemented bar code scanner 
+• Provided option to share data through email or messenger, used GoogleMaps and the inbuilt markers to locate the seller 
+Playstore Link: https://play.google.com/store/apps/details?id=com.finalproject.rakesh.cherrypick&hl=en 
+Voice and Motion Controller (Android App): Technology: Android, Java, REST API, JSON, Motion sensors, Google voice to text 
+• Developed a controller for default music player using voice and motion controls 
+• Used inbuilt sensors like Accelerometer, Magnetic field & Gyroscope and Google speech to voice converter to process the input 
+• Implemented shake and tilt detections using inbuilt Sensors like Accelerometer, Magnetic field and Gyroscope for motion sensing 
+Playstore Link: https://play.google.com/store/apps/details?id=com.rakesh_ap2016.GPMusicController&hl=en 
+Movies DB app (Android app): Technology: Android, Java, REST API, JSON, SQLite, Firebase, XML, PHP, Git subversion control 
+• Designed and developed app to extract movies information as a JSON from online API, storing & updating data on Firebase 
+• Implemented video streaming of the movies, voice recognition service, google maps activity, latest animations 
+• Implemented local server using XAMPP (Apache and SQL) and coded in PHP to serve the requests sent by the Movies DB app 
+Other Android Projects: Developed apps like Tic Tac Toe game, Remote controller using IR blaster, News Reader and Math Quiz 
+Remote NoSQL database: Technology: C#, NoSQL, Visual Studio 2015, XML 
+• Designed & developed key/value pair database using C# that performs the CRUD operations based on XML files/messages 
+• Implemented periodic persistence of the database into an XML file, Built communication between remote client & database 
+• Conceptualized storage management subsystem for collaboration federation to support activities of a software development team 
+Code Analyzer: Technology: C++, Visual Studio 2015 
+• Developed lexical scanner to extract content from the code files using state design pattern and analyzed the c o d e ’s syntax from it 
+• Implemented Abstract Syntax Tree to hold the details of all the scopes present in a source code file along with their metrics  
+ 
