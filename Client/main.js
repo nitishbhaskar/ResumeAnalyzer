@@ -6,7 +6,7 @@ resumeParser.service("resumeService", function () {
     this.matchedDegree = "";
     this.matchedExperience = "";
     this.link = "";
-    this.experience = ["year","years","years'"];
+    this.experience = ["year","years","years'","yr","yrs"];
     this.degree = ["MS",
         "M.S",
         "Master’s",
@@ -74,6 +74,7 @@ resumeParser.service("resumeService", function () {
 
     this.download = function () {
         this.matchedSkills = this.matchedSkills.toString().split(",");
+        this.matchedDegree = this.matchedDegree.toString().split(",");
         var encodedUri = "data:text/json;charset=utf-16," + encodeURIComponent(JSON.stringify({
                 "reqSkills": this.matchedSkills,
                 "degree": this.degree,
