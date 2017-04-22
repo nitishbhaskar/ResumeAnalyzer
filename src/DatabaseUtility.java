@@ -1,7 +1,6 @@
 import javafx.util.Pair;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * Created by goswa on 4/16/2017.

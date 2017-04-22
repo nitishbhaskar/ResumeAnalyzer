@@ -1,14 +1,10 @@
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by rakeshh91 on 4/22/2017.
@@ -25,9 +21,11 @@ public class FilesConverterUtility {
             else  if (fileEntry.toString().endsWith(".docx") || fileEntry.toString().endsWith(".DOCX") || (fileEntry.toString().endsWith(".doc") || fileEntry.toString().endsWith(".DOC")))  {
                 convertDocxToText(fileEntry,destPath);
             }
+            else if(fileEntry.toString().endsWith(".txt")|| fileEntry.toString().endsWith(".TXT")){
+                moveTxtToDest(fileEntry,destPath);
+            }
 
         }
-
             System.out.println("Conversion complete");
     }
 
@@ -101,5 +99,13 @@ public class FilesConverterUtility {
             fw.close();
 
         }catch(IOException e){e.printStackTrace();}
+    }
+
+    private static void moveTxtToDest(File file,String destPath){
+        try {
+            FileUtils.moveFileToDirectory(file,new File(destPath),false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
