@@ -25,7 +25,7 @@ public class ParserReducer extends Reducer<Text, Text, Text, Text> {
             concatValues.append(text.toString());
         }
         concatValues.append("|");
-        concatValues.append("Score:" + calculateMatchSkillScore());
+        concatValues.append("Score;" + calculateMatchSkillScore());
         context.write(key, new Text(concatValues.toString().trim()));
     }
 

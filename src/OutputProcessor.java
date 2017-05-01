@@ -90,7 +90,7 @@ public class OutputProcessor {
                     System.out.print(resumeString + " ");
                 System.out.print("\n");
                 for(String eachResumeData : resumeData){
-                    String[] eachContent = eachResumeData.split(":");  // Name:Satish Goswami
+                    String[] eachContent = eachResumeData.split(";");   // Name:Satish Goswami
                     if(eachContent.length <2)                  // first (resume name)
                         continue;
                     String column = eachContent[0].toLowerCase().toString();   // Name
