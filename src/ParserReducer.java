@@ -17,7 +17,7 @@ public class ParserReducer extends Reducer<Text, Text, Text, Text> {
         // TODO: please implement your reducer here
         StringBuilder concatValues = new StringBuilder();
         for (Text text : values) {
-            String[] valueArray = text.toString().trim().split(":");
+            String[] valueArray = text.toString().trim().split(";");
             if (valueArray[0].toLowerCase().equals("skill")) {
                 matchedSkills.add(valueArray[1]);
             }
