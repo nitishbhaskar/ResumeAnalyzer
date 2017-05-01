@@ -4,6 +4,7 @@
 
 import java.io.IOException;
 import java.util.regex.Matcher;
+
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.io.Text;
@@ -15,7 +16,7 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] valueArray = Utility.splitWithSpacesAndTabs(value.toString());
 
-        if(!isNewFile(context)){
+        if (!isNewFile(context)) {
             Utility.incrementLineCountOfThisFile();
         }
 
@@ -24,20 +25,26 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
                 parseRequirements(context, eachValue, valueArray);
             }
         }
+
+        takeCompleteLineForClassification(value, context);
+    }
+
+    private void takeCompleteLineForClassification(Text value, Context context) throws IOException, InterruptedException {
+        context.write(new Text("classify:"+Utility.currentFile),value);
     }
 
     private void parseRequirements(Context context, String eachValue, String[] valueArray)
             throws IOException, InterruptedException {
 
 
-        if(!Utility.nameFound) findName(context, eachValue, valueArray);
-        if(!Utility.locationFound) findLocation(context, eachValue);
+        if (!Utility.nameFound) findName(context, eachValue, valueArray);
+        if (!Utility.locationFound) findLocation(context, eachValue);
         findEmail(context, eachValue);
         findLinks(context, eachValue);
         findMatchingSkills(context, eachValue);
         findPhoneNumber(context, eachValue);
         findGPA(context, eachValue);
-        findDegrees(context,eachValue);
+        findDegrees(context, eachValue);
     }
 
     private void findEmail(Context context, String eachValue) throws IOException, InterruptedException {
@@ -60,9 +67,9 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         }
     }
 
-    private void findDegrees(Context context,String eachValue) throws IOException, InterruptedException{
-        if(isMatchingDegree(eachValue)){
-            context.write(new Text(Utility.currentFile),new Text("Degree;"+Utility.degrees.get(eachValue)));
+    private void findDegrees(Context context, String eachValue) throws IOException, InterruptedException {
+        if (isMatchingDegree(eachValue)) {
+            context.write(new Text(Utility.currentFile), new Text("Degree;" + Utility.degrees.get(eachValue)));
         }
     }
 
@@ -76,18 +83,18 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
         return Utility.requiredSkills.containsKey(word.toLowerCase());
     }
 
-    private boolean isMatchingDegree(String word){
+    private boolean isMatchingDegree(String word) {
         return Utility.degrees.containsKey(word);
     }
 
 
     private void findGPA(Context context, String eachValue) throws IOException, InterruptedException {
-        if(eachValue.contains("\\")|| eachValue.contains("//")){
+        if (eachValue.contains("\\") || eachValue.contains("//")) {
             Matcher gpaMatcher = Utility.VALID_GPA.matcher(eachValue);
             if (gpaMatcher.find()) {
                 context.write(new Text(Utility.currentFile), new Text("GPA;" + gpaMatcher.group(2)));
             }
-        }else{
+        } else {
             Matcher gpaMatcher = Utility.VALID_GPA_SEPARATOR.matcher(eachValue);
             if (gpaMatcher.find()) {
                 context.write(new Text(Utility.currentFile), new Text("GPA;" + gpaMatcher.group(1)));
@@ -101,11 +108,11 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
         String[] locationList = eachValue.split("[\\s@&.?$+-]+");
         String location = "";
-        for(String eachLocationProbab : locationList){
-            if(Utility.USStatesAcronyms.contains(eachLocationProbab) || Utility.USStatesFullNames.contains(eachLocationProbab)) {
+        for (String eachLocationProbab : locationList) {
+            if (Utility.USStatesAcronyms.contains(eachLocationProbab) || Utility.USStatesFullNames.contains(eachLocationProbab)) {
                 Utility.locationFound = true;
                 location = eachLocationProbab;
-                if(Utility.mapOfUSStates.containsKey(location))
+                if (Utility.mapOfUSStates.containsKey(location))
                     location = Utility.mapOfUSStates.get(location);
                 context.write(new Text(Utility.currentFile), new Text("Location;" + location));
             }
@@ -116,30 +123,29 @@ public class ParserMapper extends Mapper<LongWritable, Text, Text, Text> {
 
         String name = "";
 
-        for(String eachString : valueArray){
+        for (String eachString : valueArray) {
             String[] namesList = eachString.split("[\\s@&.?$+:-]+");
-            for(String eachNameProbab : namesList){
+            for (String eachNameProbab : namesList) {
                 // keep on checking for words which are not in dictionary and keep add it to names string
-                if(!Dictionary.contains(eachNameProbab)){
+                if (!Dictionary.contains(eachNameProbab)) {
                     name = name + eachNameProbab + " ";
                 }
             }
         }
 
-        if(name.matches("")){
+        if (name.matches("")) {
             // Could not detect name in our parsing rule
             context.write(new Text(Utility.currentFile), new Text("Name;" + "UNKNOWN"));
-        }
-        else
+        } else
             context.write(new Text(Utility.currentFile), new Text("Name;" + name.trim()));
 
         Utility.nameFound = true;
     }
 
-    private boolean isNewFile(Context context){
-        FileSplit fileSplit = (FileSplit)context.getInputSplit();
+    private boolean isNewFile(Context context) {
+        FileSplit fileSplit = (FileSplit) context.getInputSplit();
         String filename = fileSplit.getPath().getName();
-        if(filename.matches(Utility.currentFile))
+        if (filename.matches(Utility.currentFile))
             return false;
         Utility.currentFile = filename;
         Utility.currentLineCount = 1;

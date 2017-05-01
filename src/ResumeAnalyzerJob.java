@@ -14,10 +14,11 @@ import org.json.JSONObject;
 
 public class ResumeAnalyzerJob {
     public static void main(String[] args) throws Exception {
-        FilesConverterUtility.convertFiles("data\\sourceFiles\\",args[0]); //converts all types of files to .txt format and puts in destination
+        FilesConverterUtility.convertFiles("data\\sourceFiles\\", args[0]); //converts all types of files to .txt format and puts in destination
         Dictionary.populate();
         Utility.initializeCategories();
         Utility.populateStatesData();
+        Utility.learnCategories();
         readFromRequirementsJSON();
         readDegreeFromRequirementsJSON();
 
@@ -103,7 +104,7 @@ public class ResumeAnalyzerJob {
 
     }
 
-    private static void readDegreeFromRequirementsJSON(){
+    private static void readDegreeFromRequirementsJSON() {
         String fileContents = "";
         StringBuilder fileContentsBuilder = new StringBuilder();
         try {

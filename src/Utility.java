@@ -1,10 +1,10 @@
+import de.daslaboratorium.machinelearning.classifier.Classifier;
+import de.daslaboratorium.machinelearning.classifier.bayes.BayesClassifier;
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -20,12 +20,14 @@ public class Utility {
     public static int EXTRACTED_VALUES_COUNT = 9;
     public static String currentResumeSection;
     public static String DICTIONARY = "./data/words.txt";
-    public static boolean nameFound  = false;
-    public static boolean locationFound  = false;
+    public static boolean nameFound = false;
+    public static boolean locationFound = false;
     public static HashMap<String, Integer> requiredSkills = new HashMap<>();
-    public static HashMap<String,String> degrees = new HashMap<>();
+    public static HashMap<String, String> degrees = new HashMap<>();
     public static HashMap<String, Integer> USStates = new HashMap<>();
     public static DecimalFormat df = new DecimalFormat("#.00");
+    public static Classifier<String, String> bayes =
+            new BayesClassifier<String, String>();
 
     public static Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
@@ -37,7 +39,7 @@ public class Utility {
     }
 
     public static String[] splitWithSpacesAndTabs(String value) {
-        return value.toString().replace(",","").trim().split("\\s+");
+        return value.toString().replace(",", "").trim().split("\\s+");
     }
 
     //
@@ -48,18 +50,18 @@ public class Utility {
 
     public static void addDegrees(JSONArray degreeJSON) throws JSONException {
         for (int i = 0; i < degreeJSON.length(); i++) {
-            degrees.put(degreeJSON.get(i).toString(), checkDegree(degreeJSON.get(i).toString()) );
+            degrees.put(degreeJSON.get(i).toString(), checkDegree(degreeJSON.get(i).toString()));
         }
     }
 
-    public static String checkDegree(String degree){
-        if(degree.startsWith("M")){
+    public static String checkDegree(String degree) {
+        if (degree.startsWith("M")) {
             return "Master's";
-        }else if(degree.startsWith("B")){
+        } else if (degree.startsWith("B")) {
             return "Bachelor's";
-        }else if(degree.startsWith("D") || degree.toLowerCase().equals("phd")){
+        } else if (degree.startsWith("D") || degree.toLowerCase().equals("phd")) {
             return "Doctrate";
-        }else{
+        } else {
             return "";
         }
     }
@@ -70,21 +72,22 @@ public class Utility {
 
     // Utility Functions --------------------------------------------------------------------------
     //
-    public static void incrementLineCountOfThisFile(){
+    public static void incrementLineCountOfThisFile() {
         currentLineCount++;
     }
 
     public static void addSkills(JSONArray skillsJSON) throws JSONException {
         for (int i = 0; i < skillsJSON.length(); i++) {
-            requiredSkills.put(skillsJSON.get(i).toString().toLowerCase(),1);
+            requiredSkills.put(skillsJSON.get(i).toString().toLowerCase(), 1);
         }
     }
 
     public static HashSet<String> USStatesAcronyms = new HashSet<>();
     public static HashSet<String> USStatesFullNames = new HashSet<>();
-    public static void populateStatesData(){
 
-        for(Map.Entry<String, String> entry : mapOfUSStates.entrySet()){
+    public static void populateStatesData() {
+
+        for (Map.Entry<String, String> entry : mapOfUSStates.entrySet()) {
             USStatesAcronyms.add(entry.getKey());
             USStatesFullNames.add(entry.getValue());
         }
@@ -150,22 +153,38 @@ public class Utility {
 
     // Hash Map for categories for Machine Learning Algo
     public static HashMap<String, String> categories_Map = new HashMap<>();
-    public static String fullStack = "Java,JavaScript,JS,javascript,NodeJS";
-    public static String webDev = "Java, HTML5, HTML, CSS3, CSS, javascript";
-    public static String androidDeveloper = "Android,Java,REST API,SDK,JSON,Material design,Android Studio,SQLite,Gradle,Android NDK,ReactiveX,RXJava";
-    public static String iOSDeveloper = "iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone";
-    public static String mobileDeveloper="Android,Java,REST API,SDK,JSON,Material design,Android Studio,SQLite,Gradle,Android NDK,ReactiveX,RXJava,iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone";
-    public static void initializeCategories(){
-        categories_Map.put("FullStack Developer Role", fullStack);
-        categories_Map.put("Web Developer Role", webDev);
-        categories_Map.put("Android Developer Role", androidDeveloper);
+    /*public static String cpp = "C,C++".toLowerCase();
+    public static String csharp = "C#,.NET,visual studio".toLowerCase();
+    public static String javaDev = "java,eclipse".toLowerCase();
+    public static String clientDev = "Javascript,angularjs".toLowerCase();*/
+    public static String fullstack = "java,javascript,js,nodejs,c#".toLowerCase();
+    public static String cpp = "c,c++".toLowerCase();
+    public static String webdev = "java,html5,html,css3,css,javascript,angularjs".toLowerCase();
+    public static String androiddeveloper = "android,java,sdk,json,material design,android studio,sqlite,gradle,android ndk,reactivex,rxjava".toLowerCase();
+    public static String iOSDeveloper = "iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone".toLowerCase();
+    public static String mobileDeveloper = "Android,Java,REST API,SDK,JSON,Material design,Android Studio,SQLite,Gradle,Android NDK,ReactiveX,RXJava,iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone".toLowerCase();
+
+    public static void initializeCategories() {
+        categories_Map.put("FullStack Developer Role", fullstack);
+        categories_Map.put("Web Developer Role", webdev);
+        categories_Map.put("Android Developer Role", androiddeveloper);
+        categories_Map.put("C++ Developer Role", cpp);
         categories_Map.put("iOS Developer Role", iOSDeveloper);
         categories_Map.put("Mobile Developer Role", mobileDeveloper);
+        /*categories_Map.put("cpp dev", cpp);
+        categories_Map.put("c# dev", csharp);
+        categories_Map.put("java dev", javaDev);
+        categories_Map.put("client side dev", clientDev);*/
 
     }
 
+    public static void learnCategories() {
+        Set<String> allCategories = categories_Map.keySet();
 
-
+        for (String eachCategory : allCategories) {
+            bayes.learn(eachCategory, Arrays.asList(categories_Map.get(eachCategory).split(",")));
+        }
+    }
 
 
 }
