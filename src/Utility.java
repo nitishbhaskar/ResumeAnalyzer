@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
  */
 public class Utility {
 
-
     // Data Section ----------------------------------------------------------------
     //
     public static String currentFile = "";
@@ -147,6 +146,25 @@ public class Utility {
             put("WY", "Wyoming");
         }
     };
+
+
+    // Hash Map for categories for Machine Learning Algo
+    public static HashMap<String, String> categories_Map = new HashMap<>();
+    public static String fullStack = "Java,JavaScript,JS,javascript,NodeJS";
+    public static String webDev = "Java, HTML5, HTML, CSS3, CSS, javascript";
+    public static String androidDeveloper = "Android,Java,REST API,SDK,JSON,Material design,Android Studio,SQLite,Gradle,Android NDK,ReactiveX,RXJava";
+    public static String iOSDeveloper = "iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone";
+    public static String mobileDeveloper="Android,Java,REST API,SDK,JSON,Material design,Android Studio,SQLite,Gradle,Android NDK,ReactiveX,RXJava,iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone";
+    public static void initializeCategories(){
+        categories_Map.put("FullStack Developer Role", fullStack);
+        categories_Map.put("Web Developer Role", webDev);
+        categories_Map.put("Android Developer Role", androidDeveloper);
+        categories_Map.put("iOS Developer Role", iOSDeveloper);
+        categories_Map.put("Mobile Developer Role", mobileDeveloper);
+
+    }
+
+
 
 
 
