@@ -11,8 +11,9 @@ import java.util.regex.Pattern;
  * Created by Nitish on 4/15/2017.
  */
 public class Utility {
-
-
+    String androidDeveloper = "Android,Java,REST API,SDK,JSON,Material design,Android Studio,SQLite,Gradle,Android NDK,ReactiveX,RXJava";
+    String iOSDeveloper = "iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone";
+    String mobileDeveloper="Android,Java,REST API,SDK,JSON,Material design,Android Studio,SQLite,Gradle,Android NDK,ReactiveX,RXJava,iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone";
     // Data Section ----------------------------------------------------------------
     //
     public static String currentFile = "";
