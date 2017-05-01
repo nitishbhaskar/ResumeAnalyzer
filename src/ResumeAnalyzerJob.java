@@ -16,6 +16,7 @@ public class ResumeAnalyzerJob {
     public static void main(String[] args) throws Exception {
         FilesConverterUtility.convertFiles("data\\sourceFiles\\",args[0]); //converts all types of files to .txt format and puts in destination
         Dictionary.populate();
+        Utility.initializeCategories();
         Utility.populateStatesData();
         readFromRequirementsJSON();
         readDegreeFromRequirementsJSON();
