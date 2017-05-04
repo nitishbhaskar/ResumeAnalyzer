@@ -164,7 +164,8 @@ public class Utility {
         categories_Map.put("linux dev", linux);
         categories_Map.put("fullstack dev", fullstack);
         categories_Map.put("android dev", android);
-        categories_Map.put("security dev", iOS);
+        categories_Map.put("iOS dev", iOS);
+        categories_Map.put("security dev", security);
     }
 
     public static void learnCategories() {
