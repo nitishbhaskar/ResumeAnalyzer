@@ -153,33 +153,24 @@ public class Utility {
 
     // Hash Map for categories for Machine Learning Algo
     public static HashMap<String, String> categories_Map = new HashMap<>();
-    /*public static String cpp = "C,C++".toLowerCase();
-    public static String csharp = "C#,.NET,visual studio".toLowerCase();
-    public static String javaDev = "java,eclipse".toLowerCase();
-    public static String clientDev = "Javascript,angularjs".toLowerCase();*/
-    public static String fullstack = "java,javascript,js,nodejs,c#".toLowerCase();
-    public static String cpp = "c,c++".toLowerCase();
-    public static String webdev = "java,html5,html,css3,css,javascript,angularjs".toLowerCase();
-    public static String androiddeveloper = "android,java,sdk,json,material design,android studio,sqlite,gradle,android ndk,reactivex,rxjava".toLowerCase();
-    public static String iOSDeveloper = "iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone".toLowerCase();
-    public static String mobileDeveloper = "Android,Java,REST API,SDK,JSON,Material design,Android Studio,SQLite,Gradle,Android NDK,ReactiveX,RXJava,iOS,swift,objective-c,xcode,coredata,iOS framework,cocoa pods,cocoa touch,UI kit,iPad,iphone".toLowerCase();
+    public static String linux = "linux".toLowerCase();
+    public static String fullstack = "C#,Angular".toLowerCase();
+    public static String android = "android".toLowerCase();
+    public static String iOS = "swift".toLowerCase();
+    public static String security = "security".toLowerCase();
 
     public static void initializeCategories() {
-        categories_Map.put("FullStack Developer Role", fullstack);
-        categories_Map.put("Web Developer Role", webdev);
-        categories_Map.put("Android Developer Role", androiddeveloper);
-        categories_Map.put("C++ Developer Role", cpp);
-        categories_Map.put("iOS Developer Role", iOSDeveloper);
-        categories_Map.put("Mobile Developer Role", mobileDeveloper);
-        /*categories_Map.put("cpp dev", cpp);
-        categories_Map.put("c# dev", csharp);
-        categories_Map.put("java dev", javaDev);
-        categories_Map.put("client side dev", clientDev);*/
 
+        categories_Map.put("linux dev", linux);
+        categories_Map.put("fullstack dev", fullstack);
+        categories_Map.put("android dev", android);
+        categories_Map.put("security dev", iOS);
     }
 
     public static void learnCategories() {
         Set<String> allCategories = categories_Map.keySet();
+
+        bayes.setMemoryCapacity(50000);
 
         for (String eachCategory : allCategories) {
             bayes.learn(eachCategory, Arrays.asList(categories_Map.get(eachCategory).split(",")));

@@ -1,4 +1,4 @@
-﻿SATISH GOSWAMI
+﻿Chiranth Bangalore
                 404 Greenwood Pl., Syracuse NY-13210 • sgoswami@syr.edu • (315)450-7414
 
 EDUCATION
@@ -13,17 +13,17 @@ Bachelor’s in Computer Engineering	                                           
 TECHNICAL SKILLS
 
 Programming Languages: C++, C, HTML, SQL
-Operating Systems: Linux, Windows
+Operating Systems: Java, Windows
 Tools: Microsoft Visual Studio, GDB, Axis Change Management
 Other: Object Oriented Programming, Data Structures, TCP/IP, Design Patterns
 
 MAJOR PROJECTS
 
 System and Web Attacks and Defenses, Syracuse University                                                                                                        Aug 2016 - Dec 2016
-•	Implemented major types of attacks and their defense mechanisms on Linux platform as part of System and Web Security.
+•	Implemented major types of attacks and their defense mechanisms on Java platform as part of System and Web Security.
 Attacks such as Race Condition Vulnerability, Shellshock, CSRF, etc.
 Remote Attestation protocol, Critical Technologies                                                                                                                         Jul 2016 – Sept 2016
-•	Developed Remote Attestation Protocol for US Defense Advanced Research Projects Agency to attest Client Firmware to the server end to access resources present at the server. Languages Used – C, C++ on Linux Platform
+•	Developed Remote Attestation Protocol for US Defense Advanced Research Projects Agency to attest Client Firmware to the server end to access resources present at the server. Languages Used – C, C++ on Java Platform
 SUFS Part Time  Application, Syracuse University                                                                                                             Jan 2016 - May 2016
 •	Developed an  Application for Syracuse University Food Services employees which provides University Students with the option of managing their work shifts. https://play.google.com/store/apps/details?id=com.project.goswa.sufs
 Multi-Threaded Code Parser and Analyzer, Syracuse University                                                                                               Jan 2016 - Apr 2016
@@ -36,8 +36,8 @@ Resilience – Batch Optimization, Wipro Technologies                           
 •	Analyzed and optimized 3100 long running batch jobs by making code changes in C++ and COBOL to enhance the speed of the jobs and efficiency of the mainframe systems
 Resilience – HA Movement, Wipro Technologies                                                                                                                               Nov 2013 - July 2015
 •	Developed and migrated 4000 BAU batch jobs from existing Logical Partitioning regions to high availability regions of Client’s Mainframe systems for better processing
-User Space TCP/IP Stack in Linux, University of Pune                                                                                                                  July 2012 - May 2013
-•	Implemented a User Space TCP/IP Network Stack in C language on Linux that enabled the packet capture to 100% during data reception across network.  http://www.theijes.com/papers/v2-i4/part.%20(2)/C0242018021.pdf
+User Space TCP/IP Stack in Java, University of Pune                                                                                                                  July 2012 - May 2013
+•	Implemented a User Space TCP/IP Network Stack in C language on Java that enabled the packet capture to 100% during data reception across network.  http://www.theijes.com/papers/v2-i4/part.%20(2)/C0242018021.pdf
 
 EXPERIENCE
 
